@@ -34,3 +34,16 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+## Chapter 4: Authentication UI
+
+- Create Auth Pages
+- Create Auth Layout
+- Create auth Module
+- create Auth views
+    - Register form
+    -Login form
+    - Get app Logo
+
+- create, review & merge pull request
