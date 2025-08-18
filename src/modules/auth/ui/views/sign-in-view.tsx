@@ -17,13 +17,15 @@ import { useForm } from "react-hook-form";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { FileX, OctagonAlertIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import {FaGithub, FaGoogle} from "react-icons/fa";
 
 export const SignInView = () => {
 
     const router = useRouter();
+    
     const [error, setError] = useState<string | null>(null);
     const [pending, setPending] = useState(false);
 
@@ -47,6 +49,28 @@ export const SignInView = () => {
             {
                 email: data.email,
                 password: data.password,
+                callbackURL:"/"
+            },
+            {
+                onSuccess: () => {
+                    setPending(false);
+                },
+                onError: ({ error }) => {
+                    setPending(false);
+                    setError(error.message)
+                },
+            }
+        )
+    }
+
+    const onSocial = (provider: "github" | "google") => {
+        setError(null);
+        setPending(true);
+
+        authClient.signIn.social(
+            {
+                provider: provider,
+                callbackURL:"/"
             },
             {
                 onSuccess: () => {
@@ -88,8 +112,6 @@ export const SignInView = () => {
                                                         placeholder="email@gmail.com"
                                                         {...field}
                                                     />
-
-
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -135,8 +157,11 @@ export const SignInView = () => {
                                     </span>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <Button variant="outline" type="button" className="w-full">Google </Button>
-                                    <Button variant="outline" type="button" className="w-full">Github</Button>
+                                    <Button variant="outline" type="button" className="w-full"
+                                    onClick={() => onSocial("google")}
+                                    ><FaGoogle /></Button>
+                                    <Button variant="outline" type="button" className="w-full"
+                                     onClick={() => onSocial("github")}><FaGithub /></Button>
                                 </div>
                                 <div className="text-center text-sm">
                                     Don&apos;t have an account?{" "}
