@@ -5,6 +5,7 @@ import * as schema from "@/db/schema"
 
 
 export const auth = betterAuth({
+    trustedOrigins: process.env.TRUSTED_ORIGINS?.split(',') || ["http://localhost:3000"],
     socialProviders: {
         github: { 
             clientId: process.env.GITHUB_CLIENT_ID as string, 
