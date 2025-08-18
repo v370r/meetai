@@ -12,10 +12,15 @@ import {
 import { GeneratedAvatar } from "@/components/ui/generated-avatar";
 import { ChevronDownIcon, CreditCardIcon, LogOutIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
 
 
 export const DashboardUserButton = () => {
     const router = useRouter();
+    const isMobile = useIsMobile();
+
     const { data, isPending } = authClient.useSession();
     if (isPending || !data?.user) {
         return null;
@@ -30,6 +35,60 @@ export const DashboardUserButton = () => {
             }
         })
     }
+
+
+    if(isMobile) {
+        return (
+            <Drawer>
+                <DrawerTrigger>
+                {
+                    data.user.image ? (
+                        <Avatar className="size-9 mr-3">
+                            <AvatarImage src={data.user.image} />
+                            <AvatarFallback>{data.user.name?.charAt(0)?.toUpperCase()}</AvatarFallback>
+                        </Avatar>
+                    ) : (
+                        <GeneratedAvatar 
+                            seed={data.user.name || "User"} 
+                            variant="initials" 
+                            className="size-9 mr-3"
+                        />
+                    )
+                }
+                
+                <div className="flex flex-col gap-0.5 text-left overflow-hidden flex-1 min-w-0">
+                    <p className="text-sm font-medium truncate">
+                        {data.user.name}
+                    </p>
+                    <p className="text-xs text-muted-foreground truncate">
+                        {data.user.email}
+                    </p>
+                </div>
+
+                <ChevronDownIcon className="size-4 shrink-0 ml-auto" />
+                </DrawerTrigger>
+                <DrawerContent>
+                    <DrawerHeader>
+                        <DrawerTitle>{data.user.name}</DrawerTitle>
+                        <DrawerTitle>{data.user.email}</DrawerTitle>
+                    </DrawerHeader>
+                    <DrawerFooter>
+                        <Button variant="outline" onClick={() => {}}>
+                            <CreditCardIcon className="size-4 text-black"/>
+                            Billing
+                        </Button>
+                    </DrawerFooter>
+                    <DrawerFooter>
+                        <Button variant="outline" onClick={onLogout}>
+                            <LogOutIcon className="text-destructive focus:text-destructive cursor-pointer flex items-center justify-between"/>
+                            Logout
+                        </Button>
+                    </DrawerFooter>
+                </DrawerContent>
+            </Drawer>
+        )
+    }
+
 
 
     console.log("user data", data.user.image);
