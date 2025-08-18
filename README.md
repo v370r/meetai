@@ -47,3 +47,17 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
     - Get app Logo
 
 - create, review & merge pull request
+
+
+## Chapter 5: Authentication Socials
+- add google and github authentication
+- add callback functions
+
+
+## Chapter 6: Dashboard Sidebar
+- Create Dashboard Layout
+- Create Dashboard module
+- Create Dashboard Sidebar
+- Modify `globals.css` theme
+- Fix gradient colors in auth views
+- Create, review & merge pull request
