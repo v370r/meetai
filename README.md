@@ -61,3 +61,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Modify `globals.css` theme
 - Fix gradient colors in auth views
 - Create, review & merge pull request
+
+
+## Chapter 9: TRPC Setup
+- Setup tRPC
+- Experiment with client component
+- Experiment with server component
+- Preview prefetching
