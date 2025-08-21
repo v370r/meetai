@@ -63,8 +63,17 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Create, review & merge pull request
 
 
-## Chapter 9: TRPC Setup
+## Chapter 8: TRPC Setup
 - Setup tRPC
 - Experiment with client component
 - Experiment with server component
 - Preview prefetching
+
+## Chapter 9: Agents Setup
+- Add Agents schema
+- Add Agents module
+- Add Agents procedures
+- Add Agents pages
+- Add Loading State
+- Add Error state
+- Create, review & merge pull request
